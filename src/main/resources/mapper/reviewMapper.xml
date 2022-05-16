@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.ssafy.ssafit.model.dao.ReviewDao">
+  <resultMap type="review" id="reviewMap">
+  <id column="no" property="no"/>
+  <result column="title" property="title"/>
+  <result column="writer" property="writer"/>
+  <result column="reg_date" property="regDate"/>
+  <result column="content" property="content"/>
+  <result column="video_title" property="video_title"/>
+  </resultMap>
+  
+  <insert id="insertReview" parameterType="review">
+  INSERT INTO review VALUES(
+  0, #{title}, #{writer}, now(), #{content}, #{videoTitle})
+  </insert>
+  
+  <update id="updateReview" parameterType="review">
+  UPDATE 
+  </update>
+  <delete id="deleteReview"></delete>
+  <select id="selectList"></select>
+  <select id="selectOne"></select>
+  </mapper>
