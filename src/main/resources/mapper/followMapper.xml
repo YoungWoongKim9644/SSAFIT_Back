@@ -10,8 +10,8 @@
   <result column="followed_id" property="followedId"/>
   </resultMap>
   
-  <select id="selectList" resultMap="followMap" parameterType="String">
-  SELECT no, follower_id, followed_id
+  <select id="selectList" resultType="String" parameterType="String">
+  SELECT followed_id
   FROM follow
   WHERE follower_id = #{followerId}
   </select>

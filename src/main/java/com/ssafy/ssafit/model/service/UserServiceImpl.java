@@ -1,9 +1,13 @@
 package com.ssafy.ssafit.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.ssafit.model.dao.FollowDao;
 import com.ssafy.ssafit.model.dao.UserDao;
+import com.ssafy.ssafit.model.dto.Follow;
 import com.ssafy.ssafit.model.dto.User;
 
 @Service("userService")
@@ -11,7 +15,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	UserDao userDao;
-
+	@Autowired
+	FollowDao followDao;
+	
 	@Override
 	public boolean login(String id, String pw) {
 		User user =  this.getUserById(id);
@@ -26,15 +32,32 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void join(User user) {
-		// TODO Auto-generated method stub
-		
+	public void join(User nUser) {
+		User user = userDao.selectOne(nUser.getId());
+		if(user != null) {
+			System.out.println("중복된 아이디");
+		}
+		else {
+			userDao.insertUser(nUser);
+		}
+
 	}
 
 	@Override
 	public boolean follow(User follower, User followed) {
-		// TODO Auto-generated method stub
-		return false;
+		List<String> list = this.followList(follower);
+		
+		for(String id: list) {
+			if(followed.getId() == id) {
+				return false;
+			}
+		}
+		followDao.insertFollow(new Follow(0, follower.getId(), followed.getId()));
+		return true;
+	}
+	
+	public List<String> followList(User follower){
+		return followDao.selectList(follower.getId());
 	}
 
 	@Override
