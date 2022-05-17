@@ -1,0 +1,37 @@
+ssafit 운동영상을 정렬해서 보여주고, 리뷰 달아주는 것
+
+Views
+
+HeaderNav.vue
+main.vue (기본)
+Review.vue (기본)
+Login.vue (기본)
+Join.vue (기본)
+
+Components 
+
+mainVideo.vue
+mainTodoList.vue
+mainCalendar.vue
+
+Review (기본)
+ReviewList.vue (기본)
+ReviewInsert.vue (기본)
+ReviewDetail.vue (기본)
+ReviewUpdate.vue (기본)
+ChuChkCalendar.vue (심화)
+toDo 리스트 입력하기.vue
+toDo 리스트 체크하기.vue
+운동 점수 확인하기.vue ( 심화 2 )
+출석체크 ( 심화1 ) + 
+
+팔로우 ( 심화 1 ) -> 메세지 보내기 ( 심화 2 )
+목표량 대비 현재 도달 량 (운동 정도 또는 체중)
+자유 게시판
+
+
+
+
+
+
+
