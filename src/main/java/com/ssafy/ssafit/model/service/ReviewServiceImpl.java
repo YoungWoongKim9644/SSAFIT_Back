@@ -21,11 +21,6 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public Review readReview(int no) {
-		return reviewDao.selectOne(no);
-	}
-
-	@Override
 	public void modifyReview(int no, Review review) {
 		Review origin = reviewDao.selectOne(no);
 		origin.setContent(review.getContent());

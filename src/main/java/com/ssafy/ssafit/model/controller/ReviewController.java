@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +24,8 @@ public class ReviewController {
 	@Autowired
 	ReviewService reviewService;
 	
-	@GetMapping("/detail")
-	public ResponseEntity<Review> detail(int no){
+	@GetMapping("/detail/{no}")
+	public ResponseEntity<Review> detail(@PathVariable int no){
 		return new ResponseEntity<Review>(reviewService.getReviewByNo(no),
 				HttpStatus.OK);
 				
@@ -41,8 +42,18 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/write")
-	public void write(Review review) {
+	public void write(@RequestBody Review review) {
 		reviewService.writeReview(review);
+	}
+	
+	@PostMapping("/update/{no}")
+	public void update(@PathVariable int no, @RequestBody Review review) {
+		reviewService.modifyReview(no, review);
+	}
+	
+	@GetMapping("/delete")
+	public void delete(int no) {
+		reviewService.deleteReview(no);
 	}
 
 }

@@ -10,7 +10,6 @@ public interface ReviewService {
 	List<Review> getList(HashMap<String, String> params);
 	Review getReviewByNo(int no);
 	void writeReview(Review review);
-	Review readReview(int no);
 	void modifyReview(int no, Review review);
 	void deleteReview(int no);
 	//void updateCnt(int no);
