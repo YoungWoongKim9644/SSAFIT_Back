@@ -1,5 +1,7 @@
 package com.ssafy.ssafit.model.service;
 
+import java.util.List;
+
 import com.ssafy.ssafit.model.dto.User;
 
 public interface UserService {
@@ -9,5 +11,6 @@ public interface UserService {
 	void updateUser(User user);
 	void join(User user);
 	boolean follow(User follower, User followed);
+	public List<User> followList(User follower);
 
 }

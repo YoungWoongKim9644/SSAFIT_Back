@@ -10,10 +10,19 @@
   <result column="followed_id" property="followedId"/>
   </resultMap>
   
-  <select id="selectList" resultType="String" parameterType="String">
-  SELECT followed_id
-  FROM follow
-  WHERE follower_id = #{followerId}
+  <resultMap type="user" id="userMap">
+  	<id column="id" property="id"/>
+  	<result column="pw" property="pw"/>
+  	<result column="user_name" property="userName"/>
+  	<result column="email" property="email"/>
+  	<result column="phone" property="phone"/>
+  </resultMap>
+  
+  <select id="selectList" resultMap="user" parameterType="String">
+  SELECT u.id, u.pw, u.user_name, u.email, u.phone  
+FROM user u JOIN follow f
+ON u.id = f.follower_id 
+WHERE u.id = #{followerId}
   </select>
   
   <insert id="insertFollow" parameterType="follow">

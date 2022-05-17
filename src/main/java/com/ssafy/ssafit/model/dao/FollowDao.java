@@ -7,6 +7,6 @@ import com.ssafy.ssafit.model.dto.User;
 
 public interface FollowDao {
 	
-	List<String> selectList(String followerId);
+	List<User> selectList(String followerId);
 	void insertFollow(Follow follow);
 }

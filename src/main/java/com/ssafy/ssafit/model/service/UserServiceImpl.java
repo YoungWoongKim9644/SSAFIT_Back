@@ -45,10 +45,10 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public boolean follow(User follower, User followed) {
-		List<String> list = this.followList(follower);
+		List<User> list = this.followList(follower);
 		
-		for(String id: list) {
-			if(followed.getId() == id) {
+		for(User user: list) {
+			if(followed.getId() == user.getId()) {
 				return false;
 			}
 		}
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService{
 		return true;
 	}
 	
-	public List<String> followList(User follower){
+	public List<User> followList(User follower){
 		return followDao.selectList(follower.getId());
 	}
 
