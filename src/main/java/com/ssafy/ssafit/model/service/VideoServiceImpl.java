@@ -10,7 +10,7 @@ import com.ssafy.ssafit.model.dto.Video;
 
 @Service("videoService")
 public class VideoServiceImpl implements VideoService {
-	
+	// Video
 	@Autowired
 	VideoDao videoDao;
 	

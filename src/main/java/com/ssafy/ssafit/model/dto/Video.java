@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class Video {
 	// fitpart 테이블
-	private int code;
 	private String partName;
 	// video 테이블
 	private String title;

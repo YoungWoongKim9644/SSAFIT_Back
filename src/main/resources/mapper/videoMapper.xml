@@ -5,7 +5,6 @@
   <mapper namespace="com.ssafy.ssafit.model.dao.VideoDao">
 	<resultMap type="video" id="videoMap">
 		<id column="no" property="no"/>
-		<result column="code" property="code"/>
 		<result column="part_name" property="partName"/>
 		<result column="title" property="title"/>
 		<result column="fit_part_name" property="fitPartName"/>
