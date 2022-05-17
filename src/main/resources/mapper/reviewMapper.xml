@@ -9,7 +9,7 @@
   <result column="writer" property="writer"/>
   <result column="reg_date" property="regDate"/>
   <result column="content" property="content"/>
-  <result column="video_title" property="video_title"/>
+  <result column="video_title" property="videoTitle"/>
   </resultMap>
   
   <insert id="insertReview" parameterType="review">
@@ -18,9 +18,43 @@
   </insert>
   
   <update id="updateReview" parameterType="review">
-  UPDATE 
+ 	UPDATE review 
+  		SET 
+  		title = #{title},
+  		writer = #{writer},
+  		content = #{content},
+  		reg_date = now(),
+  		video_title = #{videoTitle}
+  		WHERE no = #{no}
   </update>
-  <delete id="deleteReview"></delete>
-  <select id="selectList"></select>
-  <select id="selectOne"></select>
+  
+  <delete id="deleteReview" parameterType="Integer" >
+  DELETE FROM review WHERE no = #{no} 
+  </delete>
+  
+  <select id="selectList" resultMap="reviewMap" parameterType="java.util.HashMap">
+    		SELECT no, title, writer, content,
+    		date_format(reg_date, '%Y-%m-%d %H%i%s') as reg_date, video_title
+  		FROM review
+  		<if test="mode == 1">
+  			WHERE title LIKE CONCAT('%', #{key}, '%')
+  		</if>
+  		<if test="mode == 2">
+  			WHERE content LIKE '%${key}%'
+  		</if>
+  		<if test="mode == 3">
+  			WHERE title LIKE CONCAT('%', #{key}, '%')
+  			OR content LIKE '%${key}%'
+  		</if>
+  </select>
+  
+  
+  <select id="selectOne" resultMap="reviewMap" parameterType="Integer">
+ SELECT no, title, writer, content, video_title, 
+ date_format(reg_date, '%Y-%m-%d %H%i%s') as reg_date
+	FROM review
+	WHERE no = #{no}
+  </select>
   </mapper>
+  
+  

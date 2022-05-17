@@ -10,5 +10,4 @@ public interface FollowDao {
 	
 	List<Follow> selectList(String followerId);
 	void insertFollow(Follow follow);
-
 }

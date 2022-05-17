@@ -7,11 +7,11 @@ import com.ssafy.ssafit.model.dto.Review;
 
 public interface ReviewDao {
 	
-	int insertReview(Review review);
+	void insertReview(Review review);
 	
- 	int updateReview(Review review);
+ 	void updateReview(Review review);
 	
-	int deleteReview();
+	void deleteReview(int no);
 	
 	List<Review> selectList(HashMap<String, String> params);
 	
