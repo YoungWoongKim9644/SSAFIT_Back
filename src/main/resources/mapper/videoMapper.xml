@@ -14,7 +14,7 @@
 	</resultMap>
 	
 	<select id="selectList" resultMap="videoMap">
-		SELECT v.title, v.youtube_id
+		SELECT v.title, v.youtube_id, v.channel_name, v.view_cnt, f.part_name
 		FROM fitpart f JOIN video v
 		ON f.code = v.fitPartName
 		WHERE f.partName = #{partName};
