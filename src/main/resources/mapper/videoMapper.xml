@@ -3,5 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.ssafy.ssafit.model.dao.VideoDao">
-
+	<resultMap type="video" id="videoMap">
+		<id column="no" property="no"/>
+		<result column="code" property="code"/>
+		<result column="part_name" property="partName"/>
+		<result column="title" property="title"/>
+		<result column="fit_part_name" property="fitPartName"/>
+		<result column="youtube_id" property="youtubeId"/>
+		<result column="channel_name" property="channelName"/>
+		<result column="view_cnt" property="viewCnt"/>
+	</resultMap>
+	
+	<select id="selectList" resultMap="videoMap">
+		SELECT v.title, v.youtube_id
+		FROM fitpart f JOIN video v
+		ON f.code = v.fitPartName
+		WHERE f.partName = #{partName};
+	</select>
+	
   </mapper>

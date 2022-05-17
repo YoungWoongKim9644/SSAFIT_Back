@@ -1,5 +1,9 @@
 package com.ssafy.ssafit.model.service;
 
-public interface VideoService {
+import java.util.List;
 
+import com.ssafy.ssafit.model.dto.Video;
+
+public interface VideoService {
+	List<Video> getVideoByPartName(String partName);
 }
