@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
 	public boolean login(String id, String pw) {
 		if(id == null || id.length() <= 0) return false;
 		User user =  this.getUserById(id);
-		if(user.getPw() == pw) return true;
+		if(user.getPw().equals(pw)) return true;
 		return false;
 	}
 

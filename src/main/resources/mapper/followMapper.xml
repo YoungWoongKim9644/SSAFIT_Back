@@ -18,7 +18,7 @@
   	<result column="phone" property="phone"/>
   </resultMap>
   
-  <select id="selectList" resultMap="user" parameterType="String">
+  <select id="selectList" resultMap="userMap" parameterType="String">
   SELECT u.id, u.pw, u.user_name, u.email, u.phone  
 FROM user u JOIN follow f
 ON u.id = f.follower_id 

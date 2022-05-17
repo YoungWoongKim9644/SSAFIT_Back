@@ -16,7 +16,7 @@
   (#{id},#{pw},#{useName},#{email},#{phone})
   </insert>
   
-  <select id="selectOne" parameterType="String">
+  <select id="selectOne" resultMap="userMap" parameterType="String">
   SELECT id, pw, user_name, email, phone
   FROM user
   WHERE id = #{id}

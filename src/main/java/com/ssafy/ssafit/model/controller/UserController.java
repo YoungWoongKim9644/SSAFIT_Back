@@ -34,7 +34,8 @@ public class UserController {
 	//넘어온 파라미터가 json일때, 파라미터에 제대로 파싱하려면 requestbody 어노테이션을 넣어야한다.
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> login(@RequestBody User user){
-		
+		System.out.println(user.getId());
+
 		HttpStatus status = null;
 		HashMap<String, Object> result = new HashMap<>();
 		try {
@@ -45,12 +46,15 @@ public class UserController {
 					result.put("auth-token", jwtUtil.createToken("userId", user.getId()));
 					result.put("message", SUCCESS);
 					status = HttpStatus.ACCEPTED;
+					System.out.println("success");
 			}else {
 				result.put("message", FAIL);
 				status = HttpStatus.ACCEPTED;
 			}
 			
 		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("exception");
 			status  = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
 		

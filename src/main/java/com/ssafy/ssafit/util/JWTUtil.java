@@ -1,5 +1,7 @@
 package com.ssafy.ssafit.util;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwts;
@@ -16,6 +18,7 @@ public class JWTUtil {
 					.setHeaderParam("alg", "HS256")
 					.setHeaderParam("typ","JWT")
 					.claim(claimId,data)
+					.setExpiration(new Date(System.currentTimeMillis() + 30000)) //param 으로 주는 시간까지 유효
 					.signWith(SignatureAlgorithm.HS256, SALT.getBytes("UTF-8"))
 					.compact();
 		}
@@ -28,3 +31,4 @@ public class JWTUtil {
 	
 	
 }
+
