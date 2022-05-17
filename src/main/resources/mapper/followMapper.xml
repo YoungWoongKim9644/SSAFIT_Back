@@ -19,15 +19,15 @@
   </resultMap>
   
   <select id="selectList" resultMap="userMap" parameterType="String">
-  SELECT u.id, u.pw, u.user_name, u.email, u.phone  
+ SELECT distinct u.*
 FROM user u JOIN follow f
-ON u.id = f.follower_id 
-WHERE u.id = #{followerId}
+ON u.id = f.followed_id 
+WHERE follower_id = #{followerId};
   </select>
   
   <insert id="insertFollow" parameterType="follow">
   INSERT INTO follow
-  VALUES(0, #{followerId}, #{followedId})
+  VALUES(#{followerId}, #{followedId},0)
   </insert>
   
   </mapper>

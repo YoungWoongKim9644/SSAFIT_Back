@@ -13,7 +13,7 @@
   
   <insert id="insertUser" parameterType="user">
   INSERT INTO user VALUES
-  (#{id},#{pw},#{useName},#{email},#{phone})
+  (#{id},#{pw},#{userName},#{email},#{phone})
   </insert>
   
   <select id="selectOne" resultMap="userMap" parameterType="String">

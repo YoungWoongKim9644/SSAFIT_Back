@@ -18,11 +18,13 @@ import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.service.UserService;
 import com.ssafy.ssafit.util.JWTUtil;
 
+//Controller <- Service <- Dao <- Mapper <- Dto
+
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
 	
-
 	private static final String FAIL = "fail";
 	private static final String SUCCESS = "success";
 	
@@ -61,12 +63,13 @@ public class UserController {
 		return new ResponseEntity<Map<String,Object>>(result, status);
 		
 	}
-	
+
 	//유효성 검사는 프론트 단에서 처리
 	@PostMapping("/join")
 	public void join(@RequestBody User user) {
 		userService.join(user);
 	}
+	
 	
 	@PostMapping("{followerId}/follow")
 	public ResponseEntity<Follow> follow(@PathVariable String followerId,
