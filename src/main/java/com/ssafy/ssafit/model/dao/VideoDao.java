@@ -7,5 +7,6 @@ import com.ssafy.ssafit.model.dto.Video;
 public interface VideoDao {
 	// 운동부위별 비디오 리스트
 	List<Video> selectList(String partName);
-	
+	// 비디오 전체 리스트
+	List<Video> videoList();
 }

@@ -14,10 +14,14 @@
 	</resultMap>
 	
 	<select id="selectList" resultMap="videoMap">
-		SELECT v.title, v.youtube_id, v.channel_name, v.view_cnt, f.part_name
+		SELECT *
 		FROM fitpart f JOIN video v
-		ON f.code = v.fitPartName
-		WHERE f.partName = #{partName};
+		ON f.code = v.fit_part_name
+		WHERE f.part_name = #{partName}
 	</select>
-	
+	<select id="videoList" resultMap="videoMap">
+		SELECT *
+		FROM fitpart f JOIN video v
+		ON f.code = v.fit_part_name
+	</select>
   </mapper>
