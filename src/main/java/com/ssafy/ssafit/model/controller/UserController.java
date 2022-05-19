@@ -19,9 +19,11 @@ import com.ssafy.ssafit.model.dto.User;
 import com.ssafy.ssafit.model.service.UserService;
 import com.ssafy.ssafit.util.JWTUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 //Controller <- Service <- Dao <- Mapper <- Dto
 
-
+@Slf4j
 @RestController
 @RequestMapping("/user")
 @CrossOrigin("*")
@@ -38,7 +40,7 @@ public class UserController {
 	//넘어온 파라미터가 json일때, 파라미터에 제대로 파싱하려면 requestbody 어노테이션을 넣어야한다.
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> login(@RequestBody User user){
-		System.out.println(user.getId());
+		log.info(user.toString());
 
 		HttpStatus status = null;
 		HashMap<String, Object> result = new HashMap<>();
@@ -68,10 +70,10 @@ public class UserController {
 
 	//유효성 검사는 프론트 단에서 처리
 	@PostMapping("/join")
-	public void join(@RequestBody User user) {
-		userService.join(user);
+	public int join(@RequestBody User user) {
+		return userService.join(user);
 	}
-	
+	//1이면 ok, 0이면 중복 
 	
 	@PostMapping("{followerId}/follow")
 	public ResponseEntity<Follow> follow(@PathVariable String followerId,

@@ -9,7 +9,7 @@ public interface UserService {
 	boolean login(String id, String pw);
 	User getUserById(String id);
 	void updateUser(User user);
-	void join(User user);
+	int join(User user);
 	boolean follow(User follower, User followed);
 	public List<User> followList(User follower);
 

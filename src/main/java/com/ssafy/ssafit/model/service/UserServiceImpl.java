@@ -33,15 +33,19 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void join(User nUser) {
+	public int join(User nUser) {
+		System.out.println("here");
 		User user = userDao.selectOne(nUser.getId());
 		if(user != null) {
 			System.out.println("중복된 아이디");
+			return 0;
 		}
 		else {
 			userDao.insertUser(nUser);
+			
 		}
-
+		
+		return 1;
 	}
 
 	@Override
