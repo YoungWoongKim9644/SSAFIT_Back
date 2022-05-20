@@ -37,11 +37,14 @@ public class ReviewController {
 	
 	@GetMapping("/list")
 	public ResponseEntity<List<Review>> list(@RequestParam(defaultValue = "") String mode,
-											@RequestParam(defaultValue = "") String key
+											@RequestParam(defaultValue = "") String key,
+											@RequestParam(defaultValue = "") String id
 			){
+		System.out.println("id" + id);
 		HashMap<String, String> params = new HashMap<>();
 		params.put("mode", mode);
 		params.put("key", key);
+		params.put("id", id);
 		return new ResponseEntity<List<Review>>(reviewService.getList(params),HttpStatus.OK);
 	}
 	

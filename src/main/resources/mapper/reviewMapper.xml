@@ -33,20 +33,24 @@
   </delete>
   
   <select id="selectList" resultMap="reviewMap" parameterType="java.util.HashMap">
-    		SELECT no, title, writer, content,
+    		SELECT no, review.title, writer, content,
     		date_format(reg_date, '%Y-%m-%d %H%i%s') as reg_date, video_title
-  		FROM review
+  		FROM review JOIN video
+        ON review.video_title = video.title
+  		WHERE video.youtube_id = #{id}
   		<if test="mode == 1">
-  			WHERE title LIKE CONCAT('%', #{key}, '%')
+  			AND title LIKE CONCAT('%', #{key}, '%')
   		</if>
   		<if test="mode == 2">
-  			WHERE content LIKE '%${key}%'
+  			AND content LIKE '%${key}%'
   		</if>
   		<if test="mode == 3">
-  			WHERE title LIKE CONCAT('%', #{key}, '%')
-  			OR content LIKE '%${key}%'
+  			AND (title LIKE CONCAT('%', #{key}, '%')
+  			OR content LIKE '%${key}%')
   		</if>
   </select>
+  
+  
   
   
   <select id="selectOne" resultMap="reviewMap" parameterType="Integer">
