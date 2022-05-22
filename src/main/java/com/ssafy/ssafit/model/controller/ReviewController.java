@@ -60,6 +60,7 @@ public class ReviewController {
 	
 	@DeleteMapping("/delete")
 	public void delete(int no) {
+		System.out.println("del no : " + no);
 		reviewService.deleteReview(no);
 	}
 
