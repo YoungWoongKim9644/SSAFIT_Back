@@ -16,4 +16,21 @@
 		FROM todo
 		WHERE id = #{id}
 	</select>
+	
+	<insert id="insertTodo" parameterType="todo">
+	INSERT INTO todo 
+	VALUES(#{id},#{action},IF(#{isDone} = 'true',1,0),now())
+	</insert>
+	
+	<update id="updateTodo" parameterType="String">
+	UPDATE todo
+	SET
+	is_done = IF(is_done = 1, 0 , 1)
+	WHERE action = #{action}
+	</update>
+	
+	<delete id="deleteTodo" parameterType="String">
+	DELETE FROM todo WHERE action = #{action}
+	</delete>
+	
   </mapper>

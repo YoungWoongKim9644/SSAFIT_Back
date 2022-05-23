@@ -18,6 +18,21 @@ public class TodoServiceImpl implements TodoService {
 	public List<Todo> getAction(String id) {
 		return todoDao.todoList(id);
 	}
+
+	@Override
+	public void insertTodo(Todo todo) {
+		todoDao.insertTodo(todo);
+	}
+
+	@Override
+	public void updateTodo(Todo todo) {
+		todoDao.updateTodo(todo.getAction());
+	}
+
+	@Override
+	public void deleteTodo(Todo todo) {
+		todoDao.deleteTodo(todo.getAction());
+	}
 	
 	
 }
