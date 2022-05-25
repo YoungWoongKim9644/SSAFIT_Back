@@ -13,15 +13,22 @@
 		<result column="view_cnt" property="viewCnt"/>
 	</resultMap>
 	
-	<select id="selectList" resultMap="videoMap">
+	<select id="selectList" resultMap="videoMap" parameterType="String">
 		SELECT *
+		<if test="partName != 'no'">
 		FROM fitpart f JOIN video v
 		ON f.code = v.fit_part_name
 		WHERE f.part_name = #{partName}
+		</if>
+		<if test="partName == 'no'">
+		FROM video
+		</if>
 	</select>
+	
 	<select id="videoList" resultMap="videoMap">
 		SELECT *
 		FROM fitpart f JOIN video v
 		ON f.code = v.fit_part_name
 	</select>
+	
   </mapper>

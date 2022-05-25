@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.ssafy.ssafit.model.dao.DibsDao">
+  
+  <select id="selectList" resultType="dibs" parameterType="String">
+  SELECT *
+  FROM dibs
+  WHERE user = #{user}
+  </select>
+  
+  <insert id="insertDibs" parameterType="dibs">
+  INSERT INTO dibs 
+  VALUES(#{title}, #{id},0)
+  </insert>
+  
+  <delete id="deleteDibs" parameterType="dibs">
+  DELETE FROM dibs WHERE user = #{id} AND title = #{title}
+  </delete>
+  
+  </mapper>
