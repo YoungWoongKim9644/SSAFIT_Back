@@ -13,6 +13,7 @@ public interface UserDao {
 	User selectOne(String id);
 	//회원정보 변경 용
  	void updateUser(User user);
+	List<String> searchUser(String id);
 
 
 }

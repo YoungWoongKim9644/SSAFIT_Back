@@ -32,4 +32,11 @@
 	  phone = #{phone}
   WHERE id = #{id}
   </update>
+  
+  <select id="searchUser" resultType="String" parameterType="String">
+  SELECT id
+  FROM user
+  WHERE id LIKE '%${id}%'
+  </select>
+  
   </mapper>

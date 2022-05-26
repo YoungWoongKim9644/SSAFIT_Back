@@ -18,16 +18,26 @@
   	<result column="phone" property="phone"/>
   </resultMap>
   
-  <select id="selectList" resultMap="userMap" parameterType="String">
- SELECT distinct u.*
-FROM user u JOIN follow f
-ON u.id = f.followed_id 
-WHERE follower_id = #{followerId};
+  <select id="selectList" resultMap="userMap" parameterType="java.util.HashMap">
+  SELECT distinct u.*
+	FROM user u JOIN follow f
+	<if test="mode == 1">
+		ON u.id = f.followed_id 
+		WHERE follower_id = #{id}
+	</if>
+	<if test="mode == 2">
+		ON u.id = f.follower_id 
+		WHERE followed_id = #{id}
+	</if>
   </select>
   
   <insert id="insertFollow" parameterType="follow">
   INSERT INTO follow
   VALUES(#{followerId}, #{followedId},0)
   </insert>
+  
+  <delete id="deleteFollow" parameterType="follow">
+  DELETE FROM follow WHERE follower_id = #{followerId} AND followed_id = #{followedId}
+  </delete>
   
   </mapper>

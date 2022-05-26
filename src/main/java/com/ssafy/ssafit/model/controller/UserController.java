@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -75,21 +75,33 @@ public class UserController {
 	}
 	//1이면 ok, 0이면 중복 
 	
-	@PostMapping("{followerId}/follow")
-	public ResponseEntity<Follow> follow(@PathVariable String followerId,
-					   String followedId) {
-		User follower = userService.getUserById(followerId);
-		User followed = userService.getUserById(followedId);
+	@PostMapping("/follower/insert")
+	public ResponseEntity<Boolean> follow(@RequestBody Follow follow) {
+		System.out.println(follow.toString());
+		User follower = userService.getUserById(follow.getFollowerId());
+		User followed = userService.getUserById(follow.getFollowedId());
 		
 		if(userService.follow(follower, followed)) {
-			return new ResponseEntity<Follow>(new Follow(0,follower.getId(),followed.getId()), HttpStatus.OK);
+			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 		}
-		return null;
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
 	
-	@PostMapping("{followerId}/followList")
-	public ResponseEntity<List<User>>followList(@PathVariable String followerId) {
-		User follower = userService.getUserById(followerId);
-		return new ResponseEntity<List<User>>(userService.followList(follower), HttpStatus.OK);
+	@PostMapping("/follower/list")
+	public ResponseEntity<List<User>>followerList(@RequestBody Map<String,String> map) {
+		System.out.println(map.toString());
+		return new ResponseEntity<List<User>>(userService.followList(map), HttpStatus.OK);
 	}
+	
+	@PostMapping("/search")
+	public ResponseEntity<List<String>> search(@RequestBody String id){
+		id = id.replaceAll("\"", "");
+		return new ResponseEntity<List<String>>(userService.searchUser(id), HttpStatus.OK);
+	}
+	
+	@PutMapping("/follower/update")
+	public void followUpdate(@RequestBody Follow follow) {
+		userService.unFollow(follow);
+	}
+	
 }
