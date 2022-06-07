@@ -35,6 +35,7 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public ResponseEntity<List<Board>> list() {
+		System.out.println("come");
 		return new ResponseEntity<List<Board>>
 		(boardService.getBoard(), HttpStatus.OK);
 	}
